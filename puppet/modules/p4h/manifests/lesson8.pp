@@ -44,7 +44,21 @@ Level 42:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+$vardir = '/tmp'
+
+file { "${vardir}/ptest1/":
+        ensure => directory,            # make sure this is a directory
+        recurse => true,                # recursively manage directory
+        purge => true,                  # purge all unmanaged files
+        force => true,                  # also purge subdirs and links
+        owner => root, group => nobody, mode => 600, backup => false,
+}
+
+
+file { "${vardir}/ptest1/heyy":
+        ensure => present,
+        content => "this is a test",
+        $require => File['${vardir}/ptest1/heyy'],
 
 }
 

@@ -38,8 +38,21 @@ Level 42:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+
+    
+
+#http://ttboj.wordpress.com/2013/02/20/automatic-hiera-lookups-in-puppet-3-x/
 
 }
+
+class testing(
+    $a = 'defaulta',
+    $b = 'defaultb'
+) {
+    notify { 'foo':
+        message => "a is: ${a}, b is: ${b}",
+    }
+}
+
 
 # vim: ts=8

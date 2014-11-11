@@ -37,8 +37,8 @@ Bonus:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
-
+    $os= inline_template("Operating System is: [<%= @operatingsystem %>]")
+    notify { $os: }
 }
 
 # vim: ts=8

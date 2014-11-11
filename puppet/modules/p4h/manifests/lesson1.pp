@@ -37,7 +37,27 @@ Level 42:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+    cron { "uptime":
+        command => "uptime >> /tmp/uptime.txt",
+        user    => root,
+        minute  => '*/5',
+    }
+
+
+    file { "/tmp/sandon":
+        ensure  => "directory",
+    }
+
+    file { "/tmp/sandon/file.txt":
+        owner   => root,
+        group   => root,
+        mode    => 644,
+        content => "This file is a test",
+    }
+
+    host { "box.houkouonchi.jp":
+        ip  =>  "208.97.141.21",
+    }
 
 }
 

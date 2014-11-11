@@ -32,7 +32,31 @@ Bonus:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+    $sudoers = '/tmp/sudoers'
+
+    concat { $sudoers:
+        owner => 'root',
+        group => 'root',
+        mode  => '0644'
+    }
+
+    concat::fragment{ 'sudoers':
+        target  => $sudoers,
+        source  => '/etc/sudoers',
+        order   => '01'
+    }
+
+    concat::fragment{ 'inktank':
+        target  => $sudoers,
+        source  => '/etc/sudoers.d/90-inktank-ubuntu',
+        order   => '02'
+    }
+
+    concat::fragment{ 'nagios':
+        target  => $sudoers,
+        source  => '/etc/sudoers.d/100-nagios',
+        order   => '03'
+    }
 
 }
 

@@ -40,7 +40,12 @@ Level 42:
 Happy hacking!\n",
 	}
 
-	# XXX: write your code here...
+    $names = ['Corey', 'Elyezer', 'Sureshkumar', 'Kedar']
+
+    define sayhello {
+        notify { $name: message => "Hello: ${name}"}
+    }
+    sayhello{$names:}
 
 }
 
